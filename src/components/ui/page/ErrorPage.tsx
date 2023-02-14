@@ -2,7 +2,7 @@ import Page from "../page/Page";
 
 const errorMessage = `You've encountered an unexpected error.`;
 
-export default function ErrorPage({ token }: { token: string }) {
+export default function ErrorPage() {
   return (
     <Page>
       <div className="flex flex-col gap-8 w-full h-full justify-center items-center">

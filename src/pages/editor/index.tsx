@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Router from "next/router";
 import Link from "next/link";
 import Page from "src/components/ui/page/Page";
@@ -6,7 +6,6 @@ import { useQuery, useMutation } from "@apollo/client";
 import { DeleteBlogMutation } from "@/components/graph";
 import Tooltip from "@mui/material/Tooltip";
 import { BlogsQuery } from "@/components/graph";
-import * as cookie from "cookie";
 import { Blog as BlogType } from "src/__generated__/graphql";
 import BlogPreview from "@/components/feature-blog/ui/BlogPreview";
 import { FaPlus, FaTrash, FaAngleDown, FaAngleUp } from "react-icons/fa";
@@ -15,21 +14,6 @@ import Popup from "@/components/ui/popups/Popup";
 import ScreenLoader from "@/components/ui/loaders/ScreenLoader";
 import ErrorPage from "@/components/ui/page/ErrorPage";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
-
-export function getServerSideProps(context: any) {
-  if (context.req.headers.cookie) {
-    const parsedCookies = cookie.parse(context.req.headers.cookie);
-    console.log("parsedCookies: ", parsedCookies);
-    const sessionCookie = JSON.parse(parsedCookies.session);
-    const { token } = sessionCookie;
-    return { props: { token } };
-  }
-  return {
-    redirect: {
-      destination: "/",
-    },
-  };
-}
 
 const title = `editor.`;
 const editorOptions = [
@@ -48,7 +32,7 @@ interface DeleteBlogPopupProps {
   setShowDeletePopup: (showDeletedPopup: string | undefined) => void;
 }
 
-const EditorView = ({ token, blogs }: { token: string; blogs: BlogType[] }) => {
+const EditorView = ({ blogs }: { blogs: BlogType[] }) => {
   const [showDeletePopup, setShowDeletePopup] = useState<string | undefined>(
     undefined
   );
@@ -167,15 +151,20 @@ const EditorView = ({ token, blogs }: { token: string; blogs: BlogType[] }) => {
   );
 };
 
-export default function Editor({ token }: { token: string }) {
+export default function Editor() {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log("token: ", token);
+  }, []);
+
   const { loading, error, data } = useQuery(BlogsQuery);
 
   if (loading) {
-    return <ScreenLoader token={token} />;
+    return <ScreenLoader />;
   }
 
   if (error) {
-    return <ErrorPage token={token} />;
+    return <ErrorPage />;
   }
 
   if (data) {

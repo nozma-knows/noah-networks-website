@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FieldValues, useForm, UseFormSetValue } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 import { Box, Grid } from "@mui/material";
@@ -17,10 +17,13 @@ const emailJSTempleId: string | undefined =
 const onSubmit = ({
   data,
   setValue,
+  setLoading,
 }: {
   data: any;
   setValue: UseFormSetValue<FieldValues>;
+  setLoading: (loading: boolean) => void;
 }) => {
+  setLoading(true);
   Object.keys(data).map((keys) => setValue(`${keys}`, ""));
   const templateParams = { ...data };
   if (emailJSAccessToken && emailJSServiceId && emailJSTempleId) {
@@ -31,16 +34,12 @@ const onSubmit = ({
         templateParams,
         emailJSAccessToken
       )
-      .then(() => console.log("Success!: "))
+      .then(() => setLoading(false))
       .catch((error) => console.log("Error: ", error));
   }
 };
 
-interface ContactFormProps {
-  loading: boolean;
-}
-
-export default function ContactForm({ loading }: ContactFormProps) {
+export default function ContactForm() {
   // React Hook Form variables
   const {
     control,
@@ -49,8 +48,14 @@ export default function ContactForm({ loading }: ContactFormProps) {
     setValue,
   } = useForm<FieldValues>();
 
+  const [loading, setLoading] = useState(false);
+
   return (
-    <form onSubmit={handleSubmit((data) => onSubmit({ data, setValue }))}>
+    <form
+      onSubmit={handleSubmit((data) =>
+        onSubmit({ data, setValue, setLoading })
+      )}
+    >
       <Box sx={{ flexGrow: 1 }} className="w-full max-w-2xl ">
         <Grid container columnSpacing={3}>
           <Grid item xs={12}>

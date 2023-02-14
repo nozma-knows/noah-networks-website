@@ -53,11 +53,7 @@ export default function CreateBlog({ token }: { token: string }) {
           <div className="flex items-center justify-between">
             <div className="flex flex-col w-full">
               <h1 className="text-secondary-light pb-8">{title}</h1>
-              <CreateBlogForm
-                token={token}
-                loading={loading}
-                onSubmit={onSubmit}
-              />
+              <CreateBlogForm loading={loading} onSubmit={onSubmit} />
             </div>
           </div>
         </div>

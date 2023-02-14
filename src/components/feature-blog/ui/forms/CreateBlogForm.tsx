@@ -1,22 +1,17 @@
-import { useEffect } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Box, Grid } from "@mui/material";
 import TextField from "@/components/ui/form-fields/TextField";
 import AutocompleteField from "@/components/ui/form-fields/AutocompleteField";
 import Button from "@/components/ui/buttons/Button";
-import BlogView from "../BlogView";
-import { DateTime } from "luxon";
 
 interface CreateBlogFormProps {
   defaultValues?: FieldValues;
-  token: string;
   loading: boolean;
   onSubmit: SubmitHandler<FieldValues>;
 }
 
 export default function CreateBlogForm({
   defaultValues,
-  token,
   loading,
   onSubmit,
 }: CreateBlogFormProps) {

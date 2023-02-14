@@ -60,11 +60,11 @@ export default function UpdateBlog({ token }: { token: string }) {
   };
 
   if (loading) {
-    return <ScreenLoader token={token} />;
+    return <ScreenLoader />;
   }
 
   if (blogQueryError) {
-    return <ErrorPage token={token} />;
+    return <ErrorPage />;
   }
 
   if (data) {
@@ -84,7 +84,6 @@ export default function UpdateBlog({ token }: { token: string }) {
                 <h1 className="text-secondary-light pb-8">{title}</h1>
                 <CreateBlogForm
                   defaultValues={defaultValues}
-                  token={token}
                   loading={loading}
                   onSubmit={onSubmit}
                 />

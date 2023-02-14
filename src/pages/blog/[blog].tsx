@@ -52,7 +52,6 @@ export default function Blog({
   token: string;
   mdxSource: MDXRemoteSerializeResult;
 }) {
-  console.log("noah - [blog].tsx - mdxSource: ", mdxSource);
   const router = useRouter();
   const { blog } = router.query;
 
@@ -61,11 +60,11 @@ export default function Blog({
   });
 
   if (loading) {
-    return <ScreenLoader token={token} />;
+    return <ScreenLoader />;
   }
 
   if (error) {
-    return <ErrorPage token={token} />;
+    return <ErrorPage />;
   }
 
   if (data) {

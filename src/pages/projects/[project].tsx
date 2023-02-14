@@ -38,7 +38,6 @@ export async function getServerSideProps(context: any) {
     .then((response) => {
       return response.data.project.content;
     });
-  console.log("noah - [project].tsx - content: ", content.join(`\n`));
   const mdxSource = await serialize(content.join(`\n`));
   if (context.req.headers.cookie) {
     const parsedCookies = cookie.parse(context.req.headers.cookie);
@@ -64,11 +63,11 @@ export default function Projects({
   });
 
   if (loading) {
-    return <ScreenLoader token={token} />;
+    return <ScreenLoader />;
   }
 
   if (error) {
-    return <ErrorPage token={token} />;
+    return <ErrorPage />;
   }
 
   if (data) {
