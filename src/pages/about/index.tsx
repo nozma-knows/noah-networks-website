@@ -9,7 +9,7 @@ const title = `About me.`;
 
 const aboutMe = [
   `I'm a builder who specializes in software and hardware engineering. I have work experience building full-stack web applications, designing and  testing PCBs along with hardware design support and sales.`,
-  `I love learnining how things work and getting hands on, so I spend a lot of my free time researching and tinkering. When I remember to give myself a break, I open up Ableton and play with sounds, or get lost on Nextflix and Youtube binges.`,
+  `I love learnining how things work and getting hands on, so I spend a lot of my free time researching and tinkering. When I remember to give myself a break, I open up Ableton and play with sounds, or get lost on Netflix and Youtube binges.`,
 ];
 
 const AboutMe = () => {
@@ -22,14 +22,17 @@ const AboutMe = () => {
         <LinkButton
           href="https://github.com/nozma-knows"
           label={<FaGithub />}
+          newTab
         />
         <LinkButton
           href="https://www.linkedin.com/in/noahmilberger/"
           label={<FaLinkedin />}
+          newTab
         />
         <LinkButton
           href="https://twitter.com/noahmilberger"
           label={<FaTwitter />}
+          newTab
         />
       </div>
     </div>

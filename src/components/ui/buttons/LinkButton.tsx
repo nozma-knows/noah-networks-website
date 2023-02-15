@@ -6,6 +6,7 @@ interface LinkButtonProps {
   className?: string;
   textStyle?: string;
   href: string;
+  newTab?: boolean;
 }
 
 export default function LinkButton({
@@ -13,13 +14,14 @@ export default function LinkButton({
   className,
   textStyle,
   href,
+  newTab,
 }: LinkButtonProps) {
   return (
     <div className={`${className} button`}>
       <Link
         className={`${textStyle ? `${textStyle}` : "link"}`}
         href={href}
-        target="_blank"
+        {...(newTab ? { target: "_blank" } : {})}
       >
         {label || "Link"}
       </Link>

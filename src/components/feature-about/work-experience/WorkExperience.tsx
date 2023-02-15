@@ -9,15 +9,15 @@ const workExperience = [
     link: "https://www.tbh.us/",
     points: [
       `Designed and built our user facing web application for connecting users to live coaches, tools for requesting sessions and interacting with content`,
-      `Designed and built a web application for our operations team to help facilitate connecting users with coaches, data analysis and managing communications, notifications and content`,
-      `Designed and built a web application for admins to get real-time data on users details, participation and feedback`,
+      `Created a web application for our operations team to help facilitate connecting users with coaches, data analysis and managing communications, notifications and content`,
+      `Built a web application for admins to get real-time data on users details, participation and feedback`,
     ],
   },
   {
     title: "Texas Instruments",
     subtitle: "Field Apps Engineer",
-    start: "May 2018 - May 2021",
-    end: "Present",
+    start: "May 2018",
+    end: "May 2021",
     link: "https://www.ti.com/",
     points: [
       `Supported customers throughout their entire design cycle (circuit design, part selction, pcb design, testing)`,
