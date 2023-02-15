@@ -3,6 +3,7 @@ import { Project as ProjectType } from "@/__generated__/graphql";
 import { FaArrowLeft, FaLink, FaGithub } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 import { Maybe } from "@/__generated__/graphql";
+import LinkButton from "@/components/ui/buttons/LinkButton";
 // import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 // const Content = ({ mdxSource }: { mdxSource: MDXRemoteSerializeResult }) => {
@@ -51,19 +52,17 @@ export default function ProjectView({
       <div className="flex flex-col items-center gap-8 py-16">
         <div className="flex text-5xl text-fenter">{title}</div>
         <div className="flex items-center gap-4 font-bold text-[#a56baf] text-3xl">
-          <Link href={github} target="_blank">
-            <FaGithub />
-          </Link>
-          <Link href={website} target="_blank">
-            <FaLink />
-          </Link>
+          <LinkButton href={github} label={<FaGithub />} />
+          <LinkButton href={website} label={<FaLink />} />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
           {/* <Content mdxSource={mdxSource} /> */}
           {content &&
             content.map((item: Maybe<string>, index: number) => {
               return (
-                <ReactMarkdown key={index}>{item ? item : ""}</ReactMarkdown>
+                <ReactMarkdown key={index} className="markdown">
+                  {item ? item : ""}
+                </ReactMarkdown>
               );
             })}
         </div>

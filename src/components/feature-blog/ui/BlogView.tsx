@@ -60,10 +60,14 @@ export default function BlogView({
           <span>•</span>
           <div className="text-main-dark">{createdAt}</div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
           {/* <Content mdxSource={mdxSource} /> */}
           {content.map((item: string, index: number) => {
-            return <ReactMarkdown key={index}>{item}</ReactMarkdown>;
+            return (
+              <ReactMarkdown key={index} className="markdown">
+                {item ? item : ""}
+              </ReactMarkdown>
+            );
           })}
         </div>
       </div>
