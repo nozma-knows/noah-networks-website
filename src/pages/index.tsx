@@ -40,6 +40,7 @@ const HomeView = () => {
 };
 
 export default function Home() {
+  console.log("HOME - TEST");
   const { loading, error, data } = useQuery(UsersQuery);
 
   if (loading) {
