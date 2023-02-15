@@ -20,7 +20,7 @@ export default function ProjectsView({ projects }: ProjectsViewProps) {
                 <Link
                   href={`/projects/${project.name}`}
                   key={index}
-                  className="border-2 p-4 sm:p-8 rounded-xl sm:button"
+                  className="border-2 p-4 sm:p-8 rounded-xl hover:bg-main-light hover:text-main-dark"
                 >
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
                     <div className="text-2xl font-semibold">{project.name}</div>
