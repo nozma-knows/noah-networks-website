@@ -1,10 +1,6 @@
 import React from "react";
-import { useQuery } from "@apollo/client";
-import { UsersQuery } from "@/components/graph";
 import Page from "src/components/ui/page/Page";
 import LinkButton from "src/components/ui/buttons/LinkButton";
-import ScreenLoader from "@/components/ui/loaders/ScreenLoader";
-import ErrorPage from "@/components/ui/page/ErrorPage";
 
 const title = `Hi, my name is Noah.`;
 const subtitle = `You've stumbled upon my personal website.`;
@@ -17,7 +13,7 @@ const HomeView = () => {
       <div className="flex flex-col justify-center items-center w-full gap-8">
         <div className="flex flex-col sm:flex-row	items-center gap-8">
           <div className="flex text-6xl animate-waving-hand h-fit w-fit">
-            👋
+            {wave}
           </div>
           <div className=" flex flex-col justify-center items-center gap-8 w-5/6 sm:w-3/4">
             <div className="flex flex-col gap-4 min-w-4/5 items-center sm:items-start">
@@ -38,36 +34,6 @@ const HomeView = () => {
     </Page>
   );
 };
-
-// const HomeView = () => {
-//   return (
-//     <Page>
-//       <div>
-//         <div>
-//         <div>{wave}</div>
-//         <div>{title}</div>
-
-//         <div>{subtitle}</div>
-//         <div>{note}</div>
-//       </div>
-//     </Page>
-//   );
-// };
-
 export default function Home() {
-  const { loading, error, data } = useQuery(UsersQuery);
-
-  if (loading) {
-    return <ScreenLoader />;
-  }
-
-  if (error) {
-    return <ErrorPage />;
-  }
-
-  if (data) {
-    return <HomeView />;
-  }
-
-  return null;
+  return <HomeView />;
 }
