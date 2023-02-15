@@ -75,7 +75,7 @@ export default function TopBar() {
   return (
     <div className="flex justify-between items-center w-full px-2 sm:px-8 text-main-dark bg-main-dark">
       <Link href="/" className="flex items-center gap-2">
-        <div className="text-2xl lg:text-3xl font-bold">{title}</div>
+        <div className="text-2xl lg:text-3xl font-bold button">{title}</div>
       </Link>
       <div className={`flex items-center gap-4`}>
         {pages({ token }).map((page: { label: string; link: string }) => {
