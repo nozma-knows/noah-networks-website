@@ -60,7 +60,11 @@ export default function ProjectView({
           {content &&
             content.map((item: Maybe<string>, index: number) => {
               return (
-                <ReactMarkdown key={index} className="markdown">
+                <ReactMarkdown
+                  key={index}
+                  linkTarget="_blank"
+                  className="markdown"
+                >
                   {item ? item : ""}
                 </ReactMarkdown>
               );

@@ -64,7 +64,11 @@ export default function BlogView({
           {/* <Content mdxSource={mdxSource} /> */}
           {content.map((item: string, index: number) => {
             return (
-              <ReactMarkdown key={index} className="markdown">
+              <ReactMarkdown
+                key={index}
+                linkTarget="_blank"
+                className="markdown"
+              >
                 {item ? item : ""}
               </ReactMarkdown>
             );
