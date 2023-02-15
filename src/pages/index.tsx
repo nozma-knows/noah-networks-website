@@ -11,7 +11,7 @@ const HomeView = () => {
   return (
     <Page>
       <div className="flex flex-col justify-center items-center w-full gap-8">
-        <div className="flex flex-col sm:flex-row	items-center gap-8">
+        <div className="flex flex-col sm:flex-row	items-center gap-8 sm:px-8">
           <div className="flex text-6xl animate-waving-hand h-fit w-fit">
             {wave}
           </div>

@@ -17,14 +17,12 @@ export default function LinkButton({
   newTab,
 }: LinkButtonProps) {
   return (
-    <div className={`${className} button`}>
-      <Link
-        className={`${textStyle ? `${textStyle}` : "link"}`}
-        href={href}
-        {...(newTab ? { target: "_blank" } : {})}
-      >
-        {label || "Link"}
-      </Link>
-    </div>
+    <Link
+      className={`${textStyle ? `${textStyle}` : "link"}`}
+      href={href}
+      {...(newTab ? { target: "_blank" } : {})}
+    >
+      <div className={`${className} button`}>{label || "Link"}</div>
+    </Link>
   );
 }
