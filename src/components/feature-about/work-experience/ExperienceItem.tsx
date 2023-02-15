@@ -19,16 +19,16 @@ export default function ExperienceItem({
 }: ExperienceItemProps) {
   return (
     <div className="">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
         <Link
           href={link}
           target="_blank"
-          className="text-[#a56baf] text-lg font-semibold button"
+          className="flex text-[#a56baf] sm:text-xl font-semibold button"
         >
           {title}
         </Link>
         <span>•</span>
-        <div className="text-base italic">{subtitle}</div>
+        <div className="flex text-base italic">{subtitle}</div>
       </div>
       <div className="text-sm lg:text-base">{`${start} ${
         end ? `- ${end}` : ""

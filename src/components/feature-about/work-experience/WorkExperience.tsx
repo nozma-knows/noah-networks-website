@@ -2,7 +2,7 @@ import ExperienceItem from "./ExperienceItem";
 
 const workExperience = [
   {
-    title: "tbh (Mindset Labs)",
+    title: "tbh",
     subtitle: "Full-stack Engineer",
     start: "Jan. 2022",
     end: "Present",
@@ -16,7 +16,7 @@ const workExperience = [
   },
   {
     title: "Texas Instruments",
-    subtitle: "Field Applications Engineer",
+    subtitle: "Field Apps Engineer",
     start: "May 2018 - May 2021",
     end: "Present",
     link: "https://www.ti.com/",
@@ -43,8 +43,7 @@ const workExperience = [
 
 export default function WorkExperience() {
   return (
-    // <div className="border-gray border-2 p-8 rounded-xl w-full">
-    <div className="p-4 rounded-xl w-full">
+    <div className="sm:p-4 rounded-xl w-full">
       <div className="text-2xl lg:text-3xl pb-8 font-semibold">
         Work Experience
       </div>

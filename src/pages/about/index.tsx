@@ -8,8 +8,8 @@ const subtitle = `I'm a builder who specializes in software and hardware enginee
 export default function About() {
   return (
     <Page>
-      <div className="flex justify-center items-center w-full h-fit pt-8 pb-16">
-        <div className=" flex flex-col gap-8 w-3/4">
+      <div className="flex justify-center items-center w-full h-fit sm:pt-8 pb-16">
+        <div className="flex flex-col gap-8 sm:w-3/4 p-2">
           <div>
             <h1 className="text-[#a56baf]">{title}</h1>
             <div>{subtitle}</div>

@@ -16,7 +16,7 @@ export default function BlogPreview({
     new Date(Number(blog.createdAt)).toISOString()
   ).toLocaleString(DateTime.DATE_FULL);
   return (
-    <div className="flex flex-col gap-2 w-full max-w-4xl px-16">
+    <div className="flex flex-col gap-2 w-full max-w-4xl sm:px-16">
       <div className="flex items-end gap-4">
         <div className="font-bold text-[#a56baf]">{blog.category}</div>
         <div>{createdAt}</div>

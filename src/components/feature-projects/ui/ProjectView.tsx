@@ -36,13 +36,13 @@ export default function ProjectView({
   }
 
   return (
-    <div className="flex flex-col gap-4 w-full px-8 md:w-4/5 md:max-w-3xl lg:max-w-4xl relative">
+    <div className="flex flex-col gap-4 w-full px-2 sm:px-8 md:w-4/5 md:max-w-3xl lg:max-w-4xl relative">
       {!noBackButton && (
         <Link
           href="/projects"
           className=" absolute text-xl lg:text-2xl top-0 left-0"
         >
-          <div className="flex gap-4 items-center button px-8">
+          <div className="flex gap-4 items-center button px-2 sm:px-8">
             <FaArrowLeft className="" />
             <div className="">Back to projects</div>
           </div>

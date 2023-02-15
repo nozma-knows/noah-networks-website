@@ -73,7 +73,7 @@ export default function TopBar() {
 
   const pathRoute = `/${router.pathname.split("/")[1]}`;
   return (
-    <div className="flex justify-between items-center w-full px-8 text-main-dark bg-main-dark">
+    <div className="flex justify-between items-center w-full px-2 sm:px-8 text-main-dark bg-main-dark">
       <Link href="/" className="flex items-center gap-2">
         <TbMoodCrazyHappy className="text-4xl" />
         <div>{title}</div>

@@ -43,7 +43,7 @@ const skills = [
 
 export default function Skills() {
   return (
-    <div className="p-4 rounded-xl w-full">
+    <div className="sm:p-4 rounded-xl w-full">
       <div className="text-2xl lg:text-3xl pb-8 font-semibold">Skills</div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {skills.map((item, index) => {

@@ -9,20 +9,20 @@ import ErrorPage from "@/components/ui/page/ErrorPage";
 const title = `Hi, my name is Noah.`;
 const subtitle = `You've stumbled upon my personal website.`;
 const note = `I'm a passionate learner, creator and friend. My goal is to make the world happier. I choose to do it through building.`;
+const wave = `👋`;
 
-// const title = ``
 const HomeView = () => {
   return (
     <Page>
       <div className="flex flex-col justify-center items-center w-full gap-8">
-        <div className="flex items-center justify-center gap-8">
+        <div className="flex flex-col sm:flex-row	items-center gap-8">
           <div className="flex text-6xl animate-waving-hand h-fit w-fit">
             👋
           </div>
-          <div className=" flex flex-col justify-center items-center gap-8 w-3/4">
-            <div className="flex flex-col gap-4 min-w-4/5">
+          <div className=" flex flex-col justify-center items-center gap-8 w-5/6 sm:w-3/4">
+            <div className="flex flex-col gap-4 min-w-4/5 items-center sm:items-start">
               <h1 className="text-secondary-light">{title}</h1>
-              <h2>{subtitle}</h2>
+              <h2 className="">{subtitle}</h2>
               <span>{note}</span>
             </div>
           </div>
@@ -39,8 +39,22 @@ const HomeView = () => {
   );
 };
 
+// const HomeView = () => {
+//   return (
+//     <Page>
+//       <div>
+//         <div>
+//         <div>{wave}</div>
+//         <div>{title}</div>
+
+//         <div>{subtitle}</div>
+//         <div>{note}</div>
+//       </div>
+//     </Page>
+//   );
+// };
+
 export default function Home() {
-  console.log("HOME - TEST");
   const { loading, error, data } = useQuery(UsersQuery);
 
   if (loading) {
