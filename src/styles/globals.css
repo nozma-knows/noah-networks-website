@@ -30,6 +30,16 @@ body {
   padding-bottom: 12px;
 }
 
+.markdown a {
+  color: #a56baf;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.markdown a:hover {
+  color: #6d3f75;
+}
+
 :root {
   /* --bg-main-dark: #181D31; */
   --bg-main-dark: #061515;

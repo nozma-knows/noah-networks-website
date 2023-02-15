@@ -55,12 +55,14 @@ export default function ProjectView({
           <LinkButton href={github} label={<FaGithub />} />
           <LinkButton href={website} label={<FaLink />} />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
           {/* <Content mdxSource={mdxSource} /> */}
           {content &&
             content.map((item: Maybe<string>, index: number) => {
               return (
-                <ReactMarkdown key={index}>{item ? item : ""}</ReactMarkdown>
+                <ReactMarkdown key={index} className="markdown">
+                  {item ? item : ""}
+                </ReactMarkdown>
               );
             })}
         </div>

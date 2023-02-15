@@ -17,10 +17,15 @@ export default function ProjectsView({ projects }: ProjectsViewProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 w-full sm:h-full overflow-y-auto sm:p-8 gap-8">
             {projects.map((project, index) => {
               return (
+                // <Link
+                //   href={`/projects/${project.name}`}
+                //   key={index}
+                //   className="border-2 p-4 sm:p-8 rounded-xl hover:bg-main-light hover:text-main-dark"
+                // >
                 <Link
                   href={`/projects/${project.name}`}
                   key={index}
-                  className="border-2 p-4 sm:p-8 rounded-xl hover:bg-main-light hover:text-main-dark"
+                  className="border-2 p-4 sm:p-8 rounded-xl button "
                 >
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
                     <div className="text-2xl font-semibold">{project.name}</div>
