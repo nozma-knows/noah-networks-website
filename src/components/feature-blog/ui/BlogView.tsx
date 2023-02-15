@@ -1,23 +1,31 @@
 import Link from "next/link";
 import { DateTime } from "luxon";
 import { FaArrowLeft } from "react-icons/fa";
-import { Blog as BlogType } from "@/__generated__/graphql";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import ReactMarkdown from "react-markdown";
+// import { Blog as BlogType } from "@/__generated__/graphql";
+// import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
-const Content = ({ mdxSource }: { mdxSource: MDXRemoteSerializeResult }) => {
-  return (
-    <div className="flex flex-col gap-4 markdown">
-      <MDXRemote {...mdxSource} />
-    </div>
-  );
-};
+// const Content = ({ mdxSource }: { mdxSource: MDXRemoteSerializeResult }) => {
+//   return (
+//     <div className="flex flex-col gap-4 markdown">
+//       <MDXRemote {...mdxSource} />
+//     </div>
+//   );
+// };
 
+// export default function BlogView({
+//   mdxSource,
+//   blog,
+//   noBackButton,
+// }: {
+//   mdxSource: MDXRemoteSerializeResult;
+//   blog: any;
+//   noBackButton?: boolean;
+// }) {
 export default function BlogView({
-  mdxSource,
   blog,
   noBackButton,
 }: {
-  mdxSource: MDXRemoteSerializeResult;
   blog: any;
   noBackButton?: boolean;
 }) {
@@ -52,8 +60,11 @@ export default function BlogView({
           <span>•</span>
           <div className="text-main-dark">{createdAt}</div>
         </div>
-        <div className="flex">
-          <Content mdxSource={mdxSource} />
+        <div className="flex flex-col">
+          {/* <Content mdxSource={mdxSource} /> */}
+          {content.map((item: string, index: number) => {
+            return <ReactMarkdown key={index}>{item}</ReactMarkdown>;
+          })}
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@ export type Blog = {
   author: User;
   authorId: Scalars['String'];
   category?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['String']>;
+  content?: Maybe<Array<Maybe<Scalars['String']>>>;
   createdAt: Scalars['String'];
   id: Scalars['ID'];
   subtitle?: Maybe<Scalars['String']>;
@@ -29,7 +29,7 @@ export type Blog = {
 export type BlogInput = {
   authorId: Scalars['ID'];
   category: Scalars['String'];
-  content: Scalars['String'];
+  content: Array<InputMaybe<Scalars['String']>>;
   subtitle: Scalars['String'];
   title: Scalars['String'];
 };
@@ -45,7 +45,7 @@ export type CreateLoginInput = {
 export type CreateProjectInput = {
   authorId: Scalars['ID'];
   category?: InputMaybe<Scalars['String']>;
-  content?: InputMaybe<Scalars['String']>;
+  content?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   github?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
   title?: InputMaybe<Scalars['String']>;
@@ -62,10 +62,6 @@ export type Login = {
 export type LoginInput = {
   email: Scalars['String'];
   password: Scalars['String'];
-};
-
-export type LogoutInput = {
-  sessionId: Scalars['String'];
 };
 
 export type Mutation = {
@@ -112,11 +108,6 @@ export type MutationLoginArgs = {
 };
 
 
-export type MutationLogoutArgs = {
-  input: LogoutInput;
-};
-
-
 export type MutationUpdateBlogArgs = {
   input: BlogInput;
 };
@@ -131,7 +122,7 @@ export type Project = {
   author: User;
   authorId: Scalars['String'];
   category?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['String']>;
+  content?: Maybe<Array<Maybe<Scalars['String']>>>;
   createdAt: Scalars['String'];
   github?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -147,6 +138,7 @@ export type Query = {
   blogs?: Maybe<Array<Maybe<Blog>>>;
   project?: Maybe<Project>;
   projects?: Maybe<Array<Maybe<Project>>>;
+  session?: Maybe<Session>;
   user?: Maybe<User>;
   users?: Maybe<Array<Maybe<User>>>;
 };
@@ -159,6 +151,11 @@ export type QueryBlogArgs = {
 
 export type QueryProjectArgs = {
   name: Scalars['String'];
+};
+
+
+export type QuerySessionArgs = {
+  id: Scalars['String'];
 };
 
 
@@ -175,7 +172,7 @@ export type Session = {
 export type UpdateProjectInput = {
   authorId: Scalars['ID'];
   category?: InputMaybe<Scalars['String']>;
-  content?: InputMaybe<Scalars['String']>;
+  content?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   github?: InputMaybe<Scalars['String']>;
   id: Scalars['ID'];
   name: Scalars['String'];

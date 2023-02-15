@@ -1,27 +1,35 @@
 import Link from "next/link";
 import { Project as ProjectType } from "@/__generated__/graphql";
 import { FaArrowLeft, FaLink, FaGithub } from "react-icons/fa";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import ReactMarkdown from "react-markdown";
+import { Maybe } from "@/__generated__/graphql";
+// import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
-const Content = ({ mdxSource }: { mdxSource: MDXRemoteSerializeResult }) => {
-  return (
-    <div className="flex flex-col gap-4 markdown">
-      <MDXRemote {...mdxSource} />
-    </div>
-  );
-};
+// const Content = ({ mdxSource }: { mdxSource: MDXRemoteSerializeResult }) => {
+//   return (
+//     <div className="flex flex-col gap-4 markdown">
+//       <MDXRemote {...mdxSource} />
+//     </div>
+//   );
+// };
 
+// export default function ProjectView({
+//   mdxSource,
+//   project,
+//   noBackButton,
+// }: {
+//   mdxSource: MDXRemoteSerializeResult;
+//   project: ProjectType;
+//   noBackButton?: boolean;
+// }) {
 export default function ProjectView({
-  mdxSource,
   project,
   noBackButton,
 }: {
-  mdxSource: MDXRemoteSerializeResult;
   project: ProjectType;
   noBackButton?: boolean;
 }) {
   const { name, website, github, category, title, content } = project;
-
   if (!name || !website || !github || !category || !title || !content) {
     const message = `Required fields haven't been set.`;
     return <div className="flex justify-center items-center">{message}</div>;
@@ -41,7 +49,6 @@ export default function ProjectView({
         </Link>
       )}
       <div className="flex flex-col items-center gap-8 py-16">
-        {/* <div className="flex text-5xl font-bold">{title}</div> */}
         <div className="flex text-5xl text-fenter">{title}</div>
         <div className="flex items-center gap-4 font-bold text-[#a56baf] text-3xl">
           <Link href={github} target="_blank">
@@ -51,8 +58,14 @@ export default function ProjectView({
             <FaLink />
           </Link>
         </div>
-        <div className="flex">
-          <Content mdxSource={mdxSource} />
+        <div className="flex flex-col">
+          {/* <Content mdxSource={mdxSource} /> */}
+          {content &&
+            content.map((item: Maybe<string>, index: number) => {
+              return (
+                <ReactMarkdown key={index}>{item ? item : ""}</ReactMarkdown>
+              );
+            })}
         </div>
       </div>
     </div>
