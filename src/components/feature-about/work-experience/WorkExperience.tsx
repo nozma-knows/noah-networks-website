@@ -8,10 +8,9 @@ const workExperience = [
     end: "Present",
     link: "https://www.tbh.us/",
     points: [
-      "Design and build full-stack web applications from idea to deployment",
-      `Integrate countless libraries and third party tools such as
-       Redux, TailwindCSS, MUI, Google APIs, Calendly,
-       SimpleTexting, Datadog, Sentry, Stripe, Zoom, etc...`,
+      `Designed and built our user facing web application for connecting users to live coaches, tools for requesting sessions and interacting with content`,
+      `Designed and built a web application for our operations team to help facilitate connecting users with coaches, data analysis and managing communications, notifications and content`,
+      `Designed and built a web application for admins to get real-time data on users details, participation and feedback`,
     ],
   },
   {
@@ -21,8 +20,8 @@ const workExperience = [
     end: "Present",
     link: "https://www.ti.com/",
     points: [
-      `Supported customers throughout their entire design cycle`,
-      `Provided customers with solutions to maximize their design care-abouts`,
+      `Supported customers throughout their entire design cycle (circuit design, part selction, pcb design, testing)`,
+      `Provided customers with solutions to maximize their design care-abouts (reduce cost, higher performance, smaller solutions)`,
       `Reviewed / Debugged schematics, layouts, and prototypes`,
       `Designed PCBs with Altium`,
       `Used SPICE simulation software to design and integrate analog circuits`,
@@ -35,7 +34,7 @@ const workExperience = [
     link: "https://www.textron.com/",
     points: [
       `Designed, built and tested a device used to program a utility product released to market`,
-      `Designed PCB using EAGLE and wrote firmware using Python`,
+      `Designed PCBs using EAGLE and wrote firmware using Python`,
       `Improved circuit design skills and understanding of the design process`,
     ],
   },
