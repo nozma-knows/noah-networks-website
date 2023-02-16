@@ -1,8 +1,10 @@
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Box, Grid } from "@mui/material";
+import { DateTime } from "luxon";
 import TextField from "@/components/ui/form-fields/TextField";
 import AutocompleteField from "@/components/ui/form-fields/AutocompleteField";
 import Button from "@/components/ui/buttons/Button";
+import BlogView from "../BlogView";
 
 interface CreateBlogFormProps {
   defaultValues?: FieldValues;
@@ -81,19 +83,20 @@ export default function CreateBlogForm({
           </Grid>
         </Box>
       </form>
-      <div className="flex justify-center">
-        {/* <BlogView
+      <div className="flex justify-center w-full">
+        <BlogView
           blog={{
             createdAt: DateTime.fromISO(new Date().toISOString()).toString(),
             updatedAt: DateTime.fromISO(new Date().toISOString()).toString(),
             category: watchValues.category,
             title: watchValues.title,
             subtitle: watchValues.subtitle,
-            content: watchValues.content,
+            content: watchValues.content
+              ? watchValues.content.split("\n")
+              : watchValues.content,
           }}
           noBackButton
-        /> */}
-        <div>Preview...</div>
+        />
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ export default function BlogView({
   noBackButton?: boolean;
 }) {
   const createdAt = DateTime.fromISO(
-    new Date(Number(blog.createdAt)).toISOString()
+    new Date(blog.createdAt).toISOString()
   ).toLocaleString(DateTime.DATE_FULL);
 
   const { category, title, subtitle, content } = blog;
@@ -60,7 +60,7 @@ export default function BlogView({
           <span>•</span>
           <div className="text-main-dark">{createdAt}</div>
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 w-ful">
           {/* <Content mdxSource={mdxSource} /> */}
           {content.map((item: string, index: number) => {
             return (

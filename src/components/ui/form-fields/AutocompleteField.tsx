@@ -3,6 +3,11 @@ import { FieldErrors, Controller } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { Autocomplete, TextField } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
+// import { theme, secondaryTheme, titleTheme, Theme } from "./FormTheme";
+// import Theme, { ThemeType } from "./FormTheme";
+// import { theme } from "./FormTheme";
+// import primaryTheme as theme from "./form-themes/PrimaryTheme";
+// import primaryTheme from "./form-themes/PrimaryTheme";
 import theme from "./FormTheme";
 
 export interface AutocompleteOptionsProps {
@@ -21,6 +26,7 @@ interface AutocompleteFieldProps {
   required?: string;
   disabled?: boolean;
   errors: FieldErrors;
+  // theme?: ThemeType;
 }
 
 export default function AutocompleteField({
@@ -33,8 +39,10 @@ export default function AutocompleteField({
   required,
   disabled = false,
   errors,
-}: AutocompleteFieldProps) {
+}: // theme,
+AutocompleteFieldProps) {
   return (
+    // <ThemeProvider theme={Theme({ theme: theme || ThemeType.Primary })}>
     <ThemeProvider theme={theme}>
       <div className={`w-full ${errors[`${name}`] ? "" : "pb-5"}`}>
         <Controller
@@ -51,7 +59,7 @@ export default function AutocompleteField({
                 getOptionLabel={(option: AutocompleteOptionsProps | string) =>
                   typeof option === "string" ? option : option.label
                 }
-                placeholder={placeholder}
+                placeholder={`${placeholder}${required ? "*" : ""}`}
                 disabled={disabled}
                 renderInput={(params: any) => (
                   <TextField

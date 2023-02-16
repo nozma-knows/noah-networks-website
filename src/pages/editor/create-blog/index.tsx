@@ -3,27 +3,21 @@ import Router from "next/router";
 import { useMutation } from "@apollo/client";
 import { FieldValues } from "react-hook-form";
 import Page from "src/components/ui/page/Page";
-import * as cookie from "cookie";
 import CreateBlogForm from "@/components/feature-blog/ui/forms/CreateBlogForm";
 import { CreateBlogMutation } from "@/components/graph";
-
-export function getServerSideProps(context: any) {
-  if (context.req.headers.cookie) {
-    const parsedCookies = cookie.parse(context.req.headers.cookie);
-    console.log("parsedCookies: ", parsedCookies);
-    const sessionCookie = JSON.parse(parsedCookies.session);
-    const { token } = sessionCookie;
-    return { props: { token } };
-  }
-  return {
-    redirect: {
-      destination: "/",
-    },
-  };
-}
+import VerifyToken from "@/components/utils/conversion/VerifyToken";
+import { Session } from "@/__generated__/graphql";
 
 const title = `Create blog.`;
-export default function CreateBlog({ token }: { token: string }) {
+export default function CreateBlog() {
+  let token = null;
+  if (typeof window !== "undefined") {
+    token = localStorage.getItem("token");
+  }
+
+  const tokenDetails = VerifyToken({ token });
+  const userId = tokenDetails ? tokenDetails.userId : undefined;
+
   const [createBlog, { loading, error }] = useMutation(CreateBlogMutation, {
     onCompleted: () => {
       Router.push("/editor");
@@ -32,11 +26,10 @@ export default function CreateBlog({ token }: { token: string }) {
   });
 
   const onSubmit = async (data: FieldValues) => {
-    console.log("data: ", data);
     createBlog({
       variables: {
         input: {
-          authorId: "017c1ce0-d7c4-4fa4-a2c1-5973a9977585",
+          authorId: userId || process.env.NEXT_PUBLIC_DEFAULT_AUTHOR,
           category: data.category,
           title: data.title,
           subtitle: data.subtitle,
