@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap');
-@import url('https: //use.typekit.net/fcw2cbe.css"');
 
 body {
   color: rgba(0, 0, 0, 0.8);
@@ -12,8 +11,7 @@ body {
 }
 
 .markdown {
-  /* font-family: 'Josefin Sans', sans-serif; */
-  font-family: "cooper-black-std", serif;
+  font-family: 'Josefin Sans', sans-serif;
   color: #e3d1e6;
 }
 
@@ -25,8 +23,7 @@ body {
   padding-bottom: 20px;
 }
 .markdown h2 {
-  /* font-family: 'Josefin Sans', sans-serif; */
-  font-family: "cooper-black-std", serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-weight: 700;
   font-size: clamp(20px, 3.2vw, 32px);
   padding-top: 12px;
