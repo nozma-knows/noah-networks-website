@@ -10,13 +10,13 @@ import Popup from "@/components/ui/popups/Popup";
 import Button from "@/components/ui/buttons/Button";
 
 interface DeleteBlogPopupProps {
-  title: string;
+  id: string;
   deleteBlogMutation: any;
   setShowDeletePopup: (showDeletedPopup: string | undefined) => void;
 }
 
 const DeleteBlogPopup = ({
-  title,
+  id,
   deleteBlogMutation,
   setShowDeletePopup,
 }: DeleteBlogPopupProps) => {
@@ -31,7 +31,7 @@ const DeleteBlogPopup = ({
             onClick={() =>
               deleteBlogMutation({
                 variables: {
-                  title,
+                  id,
                 },
               })
             }
@@ -68,7 +68,7 @@ export default function BlogsView({ blogs, editing }: BlogsViewProps) {
     <div className="flex flex-col gap-8">
       {showDeletePopup !== undefined && (
         <DeleteBlogPopup
-          title={showDeletePopup}
+          id={showDeletePopup}
           deleteBlogMutation={deleteBlog}
           setShowDeletePopup={setShowDeletePopup}
         />
@@ -79,7 +79,7 @@ export default function BlogsView({ blogs, editing }: BlogsViewProps) {
             <Tooltip title="Delete blog" arrow>
               <div
                 className="h-fit"
-                onClick={() => setShowDeletePopup(blog.title || undefined)}
+                onClick={() => setShowDeletePopup(blog.id || undefined)}
               >
                 <FaTrash className="button text-4xl" />
               </div>
