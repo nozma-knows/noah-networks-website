@@ -48,7 +48,7 @@ export default function Blog() {
   const { blog } = router.query;
 
   const { loading, error, data } = useQuery(BlogQuery, {
-    variables: { title: blog },
+    variables: { id: blog },
   });
 
   if (loading) {

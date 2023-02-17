@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 const projectDocument = gql`
-  query Project($name: String!) {
-    project(name: $name) {
+  query Project($id: String!) {
+    project(id: $id) {
       id
       authorId
       createdAt

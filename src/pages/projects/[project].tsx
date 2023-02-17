@@ -50,7 +50,7 @@ export default function Projects({
   const { project } = router.query;
 
   const { loading, error, data } = useQuery(ProjectQuery, {
-    variables: { name: project },
+    variables: { id: project },
   });
 
   if (loading) {

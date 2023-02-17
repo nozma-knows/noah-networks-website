@@ -3,12 +3,12 @@ import Router from "next/router";
 import { useMutation } from "@apollo/client";
 import { FieldValues } from "react-hook-form";
 import Page from "src/components/ui/page/Page";
-import CreateBlogForm from "@/components/feature-blog/ui/forms/CreateBlogForm";
-import { CreateBlogMutation } from "@/components/graph";
+import CreateProjectForm from "@/components/feature-projects/ui/forms/CreateProjectForm";
+import { CreateProjectMutation } from "@/components/graph";
 import VerifyToken from "@/components/utils/conversion/VerifyToken";
 
-const title = `Create blog.`;
-export default function CreateBlog() {
+const title = `Create project.`;
+export default function CreateProject() {
   let token = null;
   if (typeof window !== "undefined") {
     token = localStorage.getItem("token");
@@ -17,22 +17,28 @@ export default function CreateBlog() {
   const tokenDetails = VerifyToken({ token });
   const userId = tokenDetails ? tokenDetails.userId : undefined;
 
-  const [createBlog, { loading, error }] = useMutation(CreateBlogMutation, {
-    onCompleted: () => {
-      Router.push("/editor");
-    },
-    onError: () => console.log("error!"),
-  });
+  const [createProject, { loading, error }] = useMutation(
+    CreateProjectMutation,
+    {
+      onCompleted: () => {
+        Router.push("/editor");
+      },
+      onError: () => console.log("error!"),
+    }
+  );
 
   const onSubmit = async (data: FieldValues) => {
     const input = {
       authorId: userId || process.env.NEXT_PUBLIC_DEFAULT_AUTHOR,
+      name: data.name,
+      website: data.website,
+      github: data.github,
       category: data.category,
       title: data.title,
       subtitle: data.subtitle,
       content: data.content,
     };
-    createBlog({
+    createProject({
       variables: {
         input,
       },
@@ -46,7 +52,7 @@ export default function CreateBlog() {
           <div className="flex items-center justify-between">
             <div className="flex flex-col w-full">
               <h1 className="text-secondary-light pb-8">{title}</h1>
-              <CreateBlogForm loading={loading} onSubmit={onSubmit} />
+              <CreateProjectForm loading={loading} onSubmit={onSubmit} />
             </div>
           </div>
         </div>

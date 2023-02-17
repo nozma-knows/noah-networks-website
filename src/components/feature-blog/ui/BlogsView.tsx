@@ -11,8 +11,40 @@ import Button from "@/components/ui/buttons/Button";
 
 interface DeleteBlogPopupProps {
   title: string;
+  deleteBlogMutation: any;
   setShowDeletePopup: (showDeletedPopup: string | undefined) => void;
 }
+
+const DeleteBlogPopup = ({
+  title,
+  deleteBlogMutation,
+  setShowDeletePopup,
+}: DeleteBlogPopupProps) => {
+  return (
+    <Popup onClose={() => setShowDeletePopup(undefined)}>
+      <div className="flex flex-col items-center p-16 gap-8 bg-main-light">
+        <div>Are you sure you want to permenantely delete this blog post?</div>
+        <div className="flex gap-4">
+          <Button
+            label="Yes, I'm sure"
+            secondary
+            onClick={() =>
+              deleteBlogMutation({
+                variables: {
+                  title,
+                },
+              })
+            }
+          />
+          <Button
+            label="Cancel"
+            onClick={() => setShowDeletePopup(undefined)}
+          />
+        </div>
+      </div>
+    </Popup>
+  );
+};
 
 interface BlogsViewProps {
   blogs: BlogType[];
@@ -32,45 +64,12 @@ export default function BlogsView({ blogs, editing }: BlogsViewProps) {
     onError: () => console.log("error!"),
   });
 
-  const DeleteBlog = async (title: string) => {
-    deleteBlog({
-      variables: {
-        title,
-      },
-    });
-  };
-
-  const DeleteBlogPopup = ({
-    title,
-    setShowDeletePopup,
-  }: DeleteBlogPopupProps) => {
-    return (
-      <Popup onClose={() => setShowDeletePopup(undefined)}>
-        <div className="flex flex-col items-center p-16 gap-8 bg-main-light">
-          <div>
-            Are you sure you want to permenantely delete this blog post?
-          </div>
-          <div className="flex gap-4">
-            <Button
-              label="Yes, I'm sure"
-              secondary
-              onClick={() => DeleteBlog(title)}
-            />
-            <Button
-              label="Cancel"
-              onClick={() => setShowDeletePopup(undefined)}
-            />
-          </div>
-        </div>
-      </Popup>
-    );
-  };
-
   return (
     <div className="flex flex-col gap-8">
       {showDeletePopup !== undefined && (
         <DeleteBlogPopup
           title={showDeletePopup}
+          deleteBlogMutation={deleteBlog}
           setShowDeletePopup={setShowDeletePopup}
         />
       )}
@@ -88,8 +87,12 @@ export default function BlogsView({ blogs, editing }: BlogsViewProps) {
           )}
           <BlogPreview
             blog={blog}
-            buttonText="Update blog"
-            buttonLink="/editor/update-blog"
+            buttonText={editing ? "Update blog" : "Read more"}
+            buttonLink={
+              editing
+                ? `/editor/update-blog?blog=${blog.id}`
+                : `/blog/${blog.id}`
+            }
           />
         </div>
       ))}

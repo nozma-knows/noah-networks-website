@@ -1,48 +1,91 @@
-import Link from "next/link";
+import React, { useState } from "react";
+import Router from "next/router";
+import { useMutation } from "@apollo/client";
+import { FaTrash } from "react-icons/fa";
+import { Tooltip } from "@mui/material";
+import { DeleteProjectMutation } from "@/components/graph";
 import { Project as ProjectType } from "src/__generated__/graphql";
-import Page from "@/components/ui/page/Page";
+import Popup from "@/components/ui/popups/Popup";
+import Button from "@/components/ui/buttons/Button";
+import ProjectPreview from "./ProjectPreview";
 
-const title = `My projects.`;
+interface DeleteProjectPopupProps {
+  id: string;
+  deleteProjectMutation: any;
+  setShowDeletePopup: (showDeletedPopup: string | undefined) => void;
+}
+
+const DeleteProjectPopup = ({
+  id,
+  deleteProjectMutation,
+  setShowDeletePopup,
+}: DeleteProjectPopupProps) => {
+  console.log("id: ", id);
+  return (
+    <Popup onClose={() => setShowDeletePopup(undefined)}>
+      <div className="flex flex-col items-center p-16 gap-8 bg-main-light">
+        <div>Are you sure you want to permenantely delete this project?</div>
+        <div className="flex gap-4">
+          <Button
+            label="Yes, I'm sure"
+            secondary
+            onClick={() =>
+              deleteProjectMutation({
+                variables: {
+                  id,
+                },
+              })
+            }
+          />
+          <Button
+            label="Cancel"
+            onClick={() => setShowDeletePopup(undefined)}
+          />
+        </div>
+      </div>
+    </Popup>
+  );
+};
 
 interface ProjectsViewProps {
   projects: ProjectType[];
+  editing?: boolean;
 }
 
-export default function ProjectsView({ projects }: ProjectsViewProps) {
+export default function ProjectsView({ projects, editing }: ProjectsViewProps) {
+  const [showDeletePopup, setShowDeletePopup] = useState<string | undefined>(
+    undefined
+  );
+
+  const [deleteProject, { loading, error }] = useMutation(
+    DeleteProjectMutation,
+    {
+      onCompleted: () => {
+        setShowDeletePopup(undefined);
+        Router.reload();
+      },
+      onError: () => console.log("error!"),
+    }
+  );
+
   return (
-    <Page>
-      <div className="flex justify-center items-center w-full h-fit sm:pt-8 pb-16">
-        <div className=" flex flex-col gap-8 w-full p-2 sm:w-3/4">
-          <h1 className="text-[#a56baf]">{title}</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 w-full sm:h-full overflow-y-auto sm:p-8 gap-8">
-            {projects.map((project, index) => {
-              return (
-                // <Link
-                //   href={`/projects/${project.name}`}
-                //   key={index}
-                //   className="border-2 p-4 sm:p-8 rounded-xl hover:bg-main-light hover:text-main-dark"
-                // >
-                <Link
-                  href={`/projects/${project.name}`}
-                  key={index}
-                  className="border-2 p-4 sm:p-8 rounded-xl button"
-                >
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
-                    <div className="text-2xl font-semibold">{project.name}</div>
-                    <div className="hidden sm:block">•</div>
-                    <div className="text-base text-secondary-light">
-                      {project.category}
-                    </div>
-                  </div>
-                  <div className="flex pt-4 sm:pt-0 text-lg">
-                    {project.title}
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 w-full sm:h-full overflow-y-auto sm:p-8 gap-8">
+      {showDeletePopup !== undefined && (
+        <DeleteProjectPopup
+          id={showDeletePopup}
+          deleteProjectMutation={deleteProject}
+          setShowDeletePopup={setShowDeletePopup}
+        />
+      )}
+      {projects.map((project, index) => (
+        <div key={index} className="flex justify-center items-center">
+          <ProjectPreview
+            project={project}
+            editing={editing || false}
+            setShowDeletePopup={setShowDeletePopup}
+          />
         </div>
-      </div>
-    </Page>
+      ))}
+    </div>
   );
 }

@@ -1,15 +1,9 @@
 /* eslint-disable */
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -20,58 +14,48 @@ export type Scalars = {
 };
 
 export type Blog = {
-  __typename?: "Blog";
+  __typename?: 'Blog';
   author: User;
-  authorId: Scalars["String"];
-  category?: Maybe<Scalars["String"]>;
-  content?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  createdAt: Scalars["String"];
-  id: Scalars["ID"];
-  subtitle?: Maybe<Scalars["String"]>;
-  title?: Maybe<Scalars["String"]>;
-  updatedAt: Scalars["String"];
+  authorId: Scalars['String'];
+  category?: Maybe<Scalars['String']>;
+  content?: Maybe<Array<Maybe<Scalars['String']>>>;
+  createdAt: Scalars['String'];
+  id: Scalars['ID'];
+  subtitle?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['String'];
 };
 
 export type BlogInput = {
-  authorId: Scalars["ID"];
-  category: Scalars["String"];
-  content: Array<InputMaybe<Scalars["String"]>>;
-  subtitle: Scalars["String"];
-  title: Scalars["String"];
+  authorId: Scalars['ID'];
+  category: Scalars['String'];
+  content: Array<InputMaybe<Scalars['String']>>;
+  subtitle: Scalars['String'];
+  title: Scalars['String'];
 };
 
 export type CreateLoginInput = {
-  email: Scalars["String"];
-  firstName: Scalars["String"];
-  lastName: Scalars["String"];
-  password: Scalars["String"];
-  passwordConfirmation: Scalars["String"];
-};
-
-export type CreateProjectInput = {
-  authorId: Scalars["ID"];
-  category?: InputMaybe<Scalars["String"]>;
-  content?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
-  github?: InputMaybe<Scalars["String"]>;
-  name: Scalars["String"];
-  title?: InputMaybe<Scalars["String"]>;
-  website?: InputMaybe<Scalars["String"]>;
+  email: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  password: Scalars['String'];
+  passwordConfirmation: Scalars['String'];
 };
 
 export type Login = {
-  __typename?: "Login";
-  email: Scalars["String"];
-  id: Scalars["ID"];
+  __typename?: 'Login';
+  email: Scalars['String'];
+  id: Scalars['ID'];
   user: User;
 };
 
 export type LoginInput = {
-  email: Scalars["String"];
-  password: Scalars["String"];
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type Mutation = {
-  __typename?: "Mutation";
+  __typename?: 'Mutation';
   createBlog: Blog;
   createLogin: Login;
   createProject: Project;
@@ -83,55 +67,75 @@ export type Mutation = {
   updateProject: Project;
 };
 
+
 export type MutationCreateBlogArgs = {
   input: BlogInput;
 };
+
 
 export type MutationCreateLoginArgs = {
   input: CreateLoginInput;
 };
 
+
 export type MutationCreateProjectArgs = {
-  input: CreateProjectInput;
+  input: ProjectInput;
 };
+
 
 export type MutationDeleteBlogArgs = {
-  title: Scalars["String"];
+  id: Scalars['String'];
 };
 
+
 export type MutationDeleteProjectArgs = {
-  id: Scalars["ID"];
+  id: Scalars['String'];
 };
+
 
 export type MutationLoginArgs = {
   input: LoginInput;
 };
 
+
 export type MutationUpdateBlogArgs = {
+  id: Scalars['String'];
   input: BlogInput;
 };
 
+
 export type MutationUpdateProjectArgs = {
-  input: UpdateProjectInput;
+  id: Scalars['String'];
+  input: ProjectInput;
 };
 
 export type Project = {
-  __typename?: "Project";
+  __typename?: 'Project';
   author: User;
-  authorId: Scalars["String"];
-  category?: Maybe<Scalars["String"]>;
-  content?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  createdAt: Scalars["String"];
-  github?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
-  name: Scalars["String"];
-  title?: Maybe<Scalars["String"]>;
-  updatedAt: Scalars["String"];
-  website?: Maybe<Scalars["String"]>;
+  authorId: Scalars['String'];
+  category?: Maybe<Scalars['String']>;
+  content?: Maybe<Array<Maybe<Scalars['String']>>>;
+  createdAt: Scalars['String'];
+  github?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['String'];
+  website?: Maybe<Scalars['String']>;
+};
+
+export type ProjectInput = {
+  authorId: Scalars['ID'];
+  category?: InputMaybe<Scalars['String']>;
+  content?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  github?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  title?: InputMaybe<Scalars['String']>;
+  website?: InputMaybe<Scalars['String']>;
 };
 
 export type Query = {
-  __typename?: "Query";
+  __typename?: 'Query';
   blog?: Maybe<Blog>;
   blogs?: Maybe<Array<Maybe<Blog>>>;
   project?: Maybe<Project>;
@@ -141,44 +145,37 @@ export type Query = {
   users?: Maybe<Array<Maybe<User>>>;
 };
 
+
 export type QueryBlogArgs = {
-  title: Scalars["String"];
+  id: Scalars['String'];
 };
+
 
 export type QueryProjectArgs = {
-  name: Scalars["String"];
+  id: Scalars['String'];
 };
+
 
 export type QuerySessionArgs = {
-  id: Scalars["String"];
+  id: Scalars['String'];
 };
 
+
 export type QueryUserArgs = {
-  id: Scalars["String"];
+  id: Scalars['String'];
 };
 
 export type Session = {
-  __typename?: "Session";
-  id: Scalars["ID"];
-  token: Scalars["String"];
-};
-
-export type UpdateProjectInput = {
-  authorId: Scalars["ID"];
-  category?: InputMaybe<Scalars["String"]>;
-  content?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
-  github?: InputMaybe<Scalars["String"]>;
-  id: Scalars["ID"];
-  name: Scalars["String"];
-  title?: InputMaybe<Scalars["String"]>;
-  website?: InputMaybe<Scalars["String"]>;
+  __typename?: 'Session';
+  id: Scalars['ID'];
+  token: Scalars['String'];
 };
 
 export type User = {
-  __typename?: "User";
-  email?: Maybe<Scalars["String"]>;
-  emailVerified?: Maybe<Scalars["Boolean"]>;
-  firstName?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
-  lastName?: Maybe<Scalars["String"]>;
+  __typename?: 'User';
+  email?: Maybe<Scalars['String']>;
+  emailVerified?: Maybe<Scalars['Boolean']>;
+  firstName?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  lastName?: Maybe<Scalars['String']>;
 };

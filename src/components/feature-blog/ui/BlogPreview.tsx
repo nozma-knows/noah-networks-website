@@ -11,7 +11,6 @@ export default function BlogPreview({
   buttonLink?: string;
   buttonText?: string;
 }) {
-  console.log(buttonText);
   const createdAt = DateTime.fromISO(
     new Date(Number(blog.createdAt)).toISOString()
   ).toLocaleString(DateTime.DATE_FULL);

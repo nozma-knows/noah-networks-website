@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 const blogDocument = gql`
-  query Blog($title: String!) {
-    blog(title: $title) {
+  query Blog($id: String!) {
+    blog(id: $id) {
       id
       authorId
       createdAt

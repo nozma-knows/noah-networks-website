@@ -26,7 +26,6 @@ export default function AuthPage({
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    console.log("height: ", size.height);
     setHeight(size.height);
   }, [size]);
 

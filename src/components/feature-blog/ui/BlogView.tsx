@@ -30,7 +30,7 @@ export default function BlogView({
   noBackButton?: boolean;
 }) {
   const createdAt = DateTime.fromISO(
-    new Date(blog.createdAt).toISOString()
+    new Date(Number(blog.createdAt)).toISOString()
   ).toLocaleString(DateTime.DATE_FULL);
 
   const { category, title, subtitle, content } = blog;

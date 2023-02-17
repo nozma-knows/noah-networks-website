@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 const deleteBlogDocument = gql`
-  mutation DeleteBlog($title: String!) {
-    deleteBlog(title: $title) {
+  mutation DeleteBlog($id: String!) {
+    deleteBlog(id: $id) {
       id
     }
   }

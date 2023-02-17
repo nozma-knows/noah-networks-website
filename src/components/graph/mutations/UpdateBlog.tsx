@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const updateBlogDocument = gql`
-  mutation UpdateBlog($input: BlogInput!) {
-    updateBlog(input: $input) {
+  mutation UpdateBlog($id: String!, $input: BlogInput!) {
+    updateBlog(id: $id, input: $input) {
       id
       createdAt
       updatedAt

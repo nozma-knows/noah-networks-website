@@ -27,11 +27,11 @@ export default function ProjectView({
   project,
   noBackButton,
 }: {
-  project: ProjectType;
+  project: any;
   noBackButton?: boolean;
 }) {
   const { name, website, github, category, title, content } = project;
-  if (!name || !website || !github || !category || !title || !content) {
+  if (!name || !category || !title || !content) {
     const message = `Required fields haven't been set.`;
     return <div className="flex justify-center items-center">{message}</div>;
   }
@@ -50,7 +50,7 @@ export default function ProjectView({
         </Link>
       )}
       <div className="flex flex-col items-center gap-8 py-16">
-        <div className="flex text-5xl text-fenter">{title}</div>
+        <div className="flex text-5xl text-fenter">{name}</div>
         <div className="flex items-center gap-4 font-bold text-[#a56baf] text-3xl">
           <LinkButton href={github} label={<FaGithub />} />
           <LinkButton href={website} label={<FaLink />} />
