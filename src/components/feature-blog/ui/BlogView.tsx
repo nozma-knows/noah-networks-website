@@ -2,6 +2,7 @@ import Link from "next/link";
 import { DateTime } from "luxon";
 import { FaArrowLeft } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 // import { Blog as BlogType } from "@/__generated__/graphql";
 // import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
@@ -68,9 +69,9 @@ export default function BlogView({
                 key={index}
                 linkTarget="_blank"
                 className="markdown"
-              >
-                {item ? item : ""}
-              </ReactMarkdown>
+                rehypePlugins={[rehypeRaw]}
+                children={item ? item : ""}
+              />
             );
           })}
         </div>
