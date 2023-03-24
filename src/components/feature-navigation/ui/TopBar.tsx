@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { TbMoodCrazyHappy } from "react-icons/tb";
 import { IoMenu, IoClose } from "react-icons/io5";
 import LogoutButton from "src/components/ui/buttons/LogoutButton";
 import TopBarDropdown from "./TopBarDropdown";
@@ -11,7 +10,7 @@ const title = "noah networks";
 
 // export default function TopBar({ token }: TopBarProps) {
 export default function TopBar() {
-  let token = null;
+  let token: string | null = null;
   if (typeof window !== "undefined") {
     token = localStorage.getItem("token");
   }

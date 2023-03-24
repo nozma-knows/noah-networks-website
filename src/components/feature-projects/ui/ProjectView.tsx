@@ -52,8 +52,8 @@ export default function ProjectView({
       <div className="flex flex-col items-center gap-8 py-16">
         <div className="flex text-5xl text-fenter">{name}</div>
         <div className="flex items-center gap-4 font-bold text-[#a56baf] text-3xl">
-          <LinkButton href={github} label={<FaGithub />} />
-          <LinkButton href={website} label={<FaLink />} />
+          {github && <LinkButton href={github} label={<FaGithub />} />}
+          {website && <LinkButton href={website} label={<FaLink />} />}
         </div>
         <div className="flex flex-col gap-4">
           {/* <Content mdxSource={mdxSource} /> */}

@@ -42,7 +42,6 @@ export default function AutocompleteField({
 }: // theme,
 AutocompleteFieldProps) {
   return (
-    // <ThemeProvider theme={Theme({ theme: theme || ThemeType.Primary })}>
     <ThemeProvider theme={theme}>
       <div className={`w-full ${errors[`${name}`] ? "" : "pb-5"}`}>
         <Controller
