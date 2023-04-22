@@ -54,15 +54,9 @@ export default function About() {
     <Page>
       <div className="flex justify-center items-center w-full h-fit sm:pt-8 pb-16">
         <div className="flex flex-col gap-8 sm:w-3/4 p-2">
-          <motion.div
-            initial={{ opacity: 0, x: 0, y: 20 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{
-              duration: 1,
-            }}
-          >
+          <div>
             <h1 className="text-[#a56baf]">{title}</h1>
-          </motion.div>
+          </div>
           <AboutMe />
           <Skills />
           <WorkExperience />

@@ -8,6 +8,7 @@ import { Blog as BlogType } from "src/__generated__/graphql";
 import BlogPreview from "@/components/feature-blog/ui/BlogPreview";
 import Popup from "@/components/ui/popups/Popup";
 import Button from "@/components/ui/buttons/Button";
+import { motion } from "framer-motion";
 
 interface DeleteBlogPopupProps {
   id: string;
@@ -65,7 +66,14 @@ export default function BlogsView({ blogs, editing }: BlogsViewProps) {
   });
 
   return (
-    <div className="flex flex-col gap-8">
+    <motion.div
+      className="flex flex-col gap-8"
+      initial={{ opacity: 0, x: 0, y: 20 }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
+      transition={{
+        duration: 1,
+      }}
+    >
       {showDeletePopup !== undefined && (
         <DeleteBlogPopup
           id={showDeletePopup}
@@ -96,6 +104,6 @@ export default function BlogsView({ blogs, editing }: BlogsViewProps) {
           />
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 }

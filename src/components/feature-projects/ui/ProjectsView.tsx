@@ -8,6 +8,7 @@ import { Project as ProjectType } from "src/__generated__/graphql";
 import Popup from "@/components/ui/popups/Popup";
 import Button from "@/components/ui/buttons/Button";
 import ProjectPreview from "./ProjectPreview";
+import { motion } from "framer-motion";
 
 interface DeleteProjectPopupProps {
   id: string;
@@ -69,7 +70,14 @@ export default function ProjectsView({ projects, editing }: ProjectsViewProps) {
   );
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 w-full sm:h-full overflow-y-auto sm:p-8 gap-8">
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-2 w-full sm:h-full overflow-y-auto sm:p-8 gap-8"
+      initial={{ opacity: 0, x: 0, y: 20 }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
+      transition={{
+        duration: 1,
+      }}
+    >
       {showDeletePopup !== undefined && (
         <DeleteProjectPopup
           id={showDeletePopup}
@@ -86,6 +94,6 @@ export default function ProjectsView({ projects, editing }: ProjectsViewProps) {
           />
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 }

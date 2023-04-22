@@ -46,16 +46,16 @@ const skills = [
 
 export default function Skills() {
   return (
-    <motion.div
-      className="sm:p-4 rounded-xl w-full"
-      initial={{ opacity: 0, x: 0, y: 20 }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{
-        duration: 1,
-      }}
-    >
+    <div className="sm:p-4 rounded-xl w-full">
       <div className="text-2xl lg:text-3xl pb-8 font-semibold">Skills</div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        initial={{ opacity: 0, x: 0, y: 20 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={{
+          duration: 1,
+        }}
+      >
         {skills.map((item, index) => {
           return (
             <div key={index}>
@@ -63,7 +63,7 @@ export default function Skills() {
             </div>
           );
         })}
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
