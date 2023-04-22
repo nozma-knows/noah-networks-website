@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Page from "src/components/ui/page/Page";
 import LinkButton from "src/components/ui/buttons/LinkButton";
 
@@ -16,11 +17,18 @@ const HomeView = () => {
             {wave}
           </div>
           <div className=" flex flex-col justify-center items-center gap-8 w-5/6 sm:w-3/4">
-            <div className="flex flex-col gap-4 min-w-4/5 items-center sm:items-start">
+            <motion.div
+              className="flex flex-col gap-4 min-w-4/5 items-center sm:items-start"
+              initial={{ opacity: 0, x: 0, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{
+                duration: 1,
+              }}
+            >
               <h1 className="text-secondary-light">{title}</h1>
               <h2 className="">{subtitle}</h2>
               <span>{note}</span>
-            </div>
+            </motion.div>
           </div>
         </div>
         <div className="">

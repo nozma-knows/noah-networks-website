@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import ExperienceItem from "./ExperienceItem";
 
 const workExperience = [
@@ -49,7 +50,14 @@ export default function WorkExperience() {
       <div className="flex flex-col gap-8">
         {workExperience.map((item, index) => {
           return (
-            <div key={index}>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: 0, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{
+                duration: 1,
+              }}
+            >
               <ExperienceItem
                 title={item.title}
                 subtitle={item.subtitle}
@@ -58,7 +66,7 @@ export default function WorkExperience() {
                 link={item.link}
                 points={item.points}
               />
-            </div>
+            </motion.div>
           );
         })}
       </div>
