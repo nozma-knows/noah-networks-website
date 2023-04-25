@@ -1,28 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { DateTime } from "luxon";
 import { FaArrowLeft } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-// import { Blog as BlogType } from "@/__generated__/graphql";
-// import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-
-// const Content = ({ mdxSource }: { mdxSource: MDXRemoteSerializeResult }) => {
-//   return (
-//     <div className="flex flex-col gap-4 markdown">
-//       <MDXRemote {...mdxSource} />
-//     </div>
-//   );
-// };
-
-// export default function BlogView({
-//   mdxSource,
-//   blog,
-//   noBackButton,
-// }: {
-//   mdxSource: MDXRemoteSerializeResult;
-//   blog: any;
-//   noBackButton?: boolean;
-// }) {
 export default function BlogView({
   blog,
   noBackButton,
@@ -30,11 +11,12 @@ export default function BlogView({
   blog: any;
   noBackButton?: boolean;
 }) {
+  console.log("blog: ", blog);
   const createdAt = DateTime.fromISO(
     new Date(Number(blog.createdAt)).toISOString()
   ).toLocaleString(DateTime.DATE_FULL);
 
-  const { category, title, subtitle, content } = blog;
+  const { category, coverPhoto, title, subtitle, content } = blog;
 
   if (!category || !title || !subtitle || !content) {
     const message = `Required fields haven't been set.`;
@@ -55,6 +37,14 @@ export default function BlogView({
         </Link>
       )}
       <div className="flex flex-col items-center gap-8 py-16">
+        <div className="flex w-full aspect-video relative">
+          <Image
+            className="rounded-lg"
+            alt={`${title} cover photo`}
+            src={coverPhoto || ""}
+            fill
+          />
+        </div>
         <div className="text-5xl font-bold">{title}</div>
         <div className="flex items-center gap-4 font-bold text-[#a56baf] text-lg">
           <div>{category}</div>
@@ -62,7 +52,6 @@ export default function BlogView({
           <div className="text-main-dark">{createdAt}</div>
         </div>
         <div className="flex flex-col gap-4 w-ful">
-          {/* <Content mdxSource={mdxSource} /> */}
           {content.map((item: string, index: number) => {
             return (
               <ReactMarkdown

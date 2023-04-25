@@ -8,6 +8,7 @@ const blogDocument = gql`
       createdAt
       updatedAt
       category
+      coverPhoto
       title
       subtitle
       content

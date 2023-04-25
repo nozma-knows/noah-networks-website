@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Router from "next/router";
 import { useMutation } from "@apollo/client";
 import { FaTrash } from "react-icons/fa";
-import { Tooltip } from "@mui/material";
+import { Grid, Tooltip } from "@mui/material";
 import { DeleteProjectMutation } from "@/components/graph";
 import { Project as ProjectType } from "src/__generated__/graphql";
 import Popup from "@/components/ui/popups/Popup";
@@ -71,7 +71,7 @@ export default function ProjectsView({ projects, editing }: ProjectsViewProps) {
 
   return (
     <motion.div
-      className="grid grid-cols-1 md:grid-cols-2 w-full sm:h-full overflow-y-auto sm:p-8 gap-8"
+      className=" w-full sm:h-full overflow-y-auto sm:p-8 gap-8"
       initial={{ opacity: 0, x: 0, y: 20 }}
       animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{
@@ -85,15 +85,17 @@ export default function ProjectsView({ projects, editing }: ProjectsViewProps) {
           setShowDeletePopup={setShowDeletePopup}
         />
       )}
-      {projects.map((project, index) => (
-        <div key={index} className="flex justify-center items-center">
-          <ProjectPreview
-            project={project}
-            editing={editing || false}
-            setShowDeletePopup={setShowDeletePopup}
-          />
-        </div>
-      ))}
+      <div className="flex w-full">
+        <Grid container spacing={2}>
+          {projects.map((project, index) => (
+            <ProjectPreview
+              project={project}
+              editing={editing || false}
+              setShowDeletePopup={setShowDeletePopup}
+            />
+          ))}
+        </Grid>
+      </div>
     </motion.div>
   );
 }

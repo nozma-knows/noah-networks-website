@@ -1,11 +1,10 @@
+import Image from "next/image";
 import { DateTime } from "luxon";
 import { Blog as BlogType } from "src/__generated__/graphql";
-import LinkButton from "src/components/ui/buttons/LinkButton";
+import Router from "next/router";
 
 export default function BlogPreview({
   blog,
-  buttonLink,
-  buttonText,
 }: {
   blog: BlogType;
   buttonLink?: string;
@@ -15,19 +14,25 @@ export default function BlogPreview({
     new Date(Number(blog.createdAt)).toISOString()
   ).toLocaleString(DateTime.DATE_FULL);
   return (
-    <div className="flex flex-col gap-2 w-full max-w-4xl sm:px-16">
-      <div className="flex items-end gap-4">
-        <div className="font-bold text-[#a56baf]">{blog.category}</div>
-        <div>{createdAt}</div>
-      </div>
-      <div className="text-2xl font-bold">{blog.title}</div>
-      <div className="text-lg">{blog.subtitle}</div>
-      <div className="self-start pt-4">
-        <LinkButton
-          className="text-sm sm:text-base bg-main-light px-4 py-2 rounded-xl button text-main-light font-bold"
-          label={buttonText || "Read more"}
-          href={buttonLink || `/blog/${blog.title}`}
+    <div
+      className="flex flex-col gap-2 w-full button"
+      onClick={() => Router.push(`/blog/${blog.id}`)}
+    >
+      <div className="flex flex-1 relative">
+        <Image
+          className="rounded-lg"
+          alt={`${blog.title} cover photo`}
+          src={blog.coverPhoto || ""}
+          fill
         />
+      </div>
+      <div className="flex flex-1 flex-col gap-2 w-full h-full">
+        <div className="flex items-center justify-between gap-4">
+          <div className="font-bold text-[#a56baf]">{blog.category}</div>
+          <div className="text-sm">{createdAt}</div>
+        </div>
+        <div className="text-xl font-bold">{blog.title}</div>
+        <div className="text-base">{blog.subtitle}</div>
       </div>
     </div>
   );

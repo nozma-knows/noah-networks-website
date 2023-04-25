@@ -3,7 +3,7 @@ import Router from "next/router";
 import { useMutation } from "@apollo/client";
 import { DeleteBlogMutation } from "@/components/graph";
 import { FaTrash } from "react-icons/fa";
-import { Tooltip } from "@mui/material";
+import { Grid, Tooltip } from "@mui/material";
 import { Blog as BlogType } from "src/__generated__/graphql";
 import BlogPreview from "@/components/feature-blog/ui/BlogPreview";
 import Popup from "@/components/ui/popups/Popup";
@@ -67,7 +67,7 @@ export default function BlogsView({ blogs, editing }: BlogsViewProps) {
 
   return (
     <motion.div
-      className="flex flex-col gap-8"
+      className="flex flex-col gap-8 items-center"
       initial={{ opacity: 0, x: 0, y: 20 }}
       animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{
@@ -81,29 +81,35 @@ export default function BlogsView({ blogs, editing }: BlogsViewProps) {
           setShowDeletePopup={setShowDeletePopup}
         />
       )}
-      {blogs.map((blog, index) => (
-        <div key={index} className="flex justify-center items-center">
-          {editing && (
-            <Tooltip title="Delete blog" arrow>
-              <div
-                className="h-fit"
-                onClick={() => setShowDeletePopup(blog.id || undefined)}
-              >
-                <FaTrash className="button text-4xl" />
+      <div className="flex w-full max-w-7xl px-8 sm:px-0">
+        <Grid container columnSpacing={3} rowSpacing={3}>
+          {blogs.map((blog, index) => (
+            <Grid item xs={12} sm={6} lg={4}>
+              <div className="flex w-full h-80 rounded-lg">
+                {editing && (
+                  <Tooltip title="Delete blog" arrow>
+                    <div
+                      className="h-fit"
+                      onClick={() => setShowDeletePopup(blog.id || undefined)}
+                    >
+                      <FaTrash className="button text-4xl" />
+                    </div>
+                  </Tooltip>
+                )}
+                <BlogPreview
+                  blog={blog}
+                  buttonText={editing ? "Update blog" : "Read more"}
+                  buttonLink={
+                    editing
+                      ? `/editor/update-blog?blog=${blog.id}`
+                      : `/blog/${blog.id}`
+                  }
+                />
               </div>
-            </Tooltip>
-          )}
-          <BlogPreview
-            blog={blog}
-            buttonText={editing ? "Update blog" : "Read more"}
-            buttonLink={
-              editing
-                ? `/editor/update-blog?blog=${blog.id}`
-                : `/blog/${blog.id}`
-            }
-          />
-        </div>
-      ))}
+            </Grid>
+          ))}
+        </Grid>
+      </div>
     </motion.div>
   );
 }

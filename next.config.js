@@ -15,4 +15,5 @@ module.exports = withMDX({
   experimental: {
     appDir: true,
   },
+  images: { domains: ["noah-networks.s3.amazonaws.com"] },
 });

@@ -6,6 +6,7 @@ const blogsDocument = gql`
       id
       createdAt
       category
+      coverPhoto
       title
       subtitle
       content

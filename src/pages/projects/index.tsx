@@ -15,6 +15,7 @@ export default function Projects() {
   }
 
   if (error) {
+    console.log("Error: ", error);
     return <ErrorPage />;
   }
 
@@ -24,7 +25,7 @@ export default function Projects() {
     );
     return (
       <Page>
-        <div className="flex justify-center items-center w-full h-fit sm:pt-8 pb-16">
+        <div className="flex justify-center items-center w-full h-fit sm:pt-8 pb-8">
           <div className=" flex flex-col gap-8 p-2 w-full sm:w-3/4">
             <h1 className="text-secondary-light">{title}</h1>
             <ProjectsView projects={projects} />

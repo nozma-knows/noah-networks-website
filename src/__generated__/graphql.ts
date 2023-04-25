@@ -19,6 +19,7 @@ export type Blog = {
   authorId: Scalars['String'];
   category?: Maybe<Scalars['String']>;
   content?: Maybe<Array<Maybe<Scalars['String']>>>;
+  coverPhoto?: Maybe<Scalars['String']>;
   createdAt: Scalars['String'];
   id: Scalars['ID'];
   subtitle?: Maybe<Scalars['String']>;
@@ -30,6 +31,7 @@ export type BlogInput = {
   authorId: Scalars['ID'];
   category: Scalars['String'];
   content: Array<InputMaybe<Scalars['String']>>;
+  coverPhoto: Scalars['String'];
   subtitle: Scalars['String'];
   title: Scalars['String'];
 };

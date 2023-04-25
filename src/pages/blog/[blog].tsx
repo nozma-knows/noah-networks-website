@@ -63,7 +63,6 @@ export default function Blog() {
     return (
       <Page>
         <div className="flex w-full justify-center">
-          {/* <BlogView mdxSource={mdxSource} blog={data.blog} /> */}
           <BlogView blog={data.blog} />
         </div>
       </Page>
